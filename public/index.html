@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="css/dashboard.css" rel="stylesheet">
+    <script src="js/lib/requirejs/require.js" data-main="js/config.js"></script>
+</head>
+<body>
+<div ui-view>
+    <div>Hello, world!</div>
+    <div ng-controller="MyController">
+        <input type="text" ng-model="name" />
+        <span>{{name}}</span>
+        <a ui-sref="contacts">通过ui-sref跳转到contacts state</a>
+    </div>
+</div>
+</body>
+</html>
