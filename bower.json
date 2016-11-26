@@ -15,6 +15,7 @@
     "jquery": "^3.1.1",
     "requirejs": "^2.3.2",
     "bootstrap": "^3.3.7",
-    "angular-ui-router": "^0.3.2"
+    "angular-ui-router": "^0.3.2",
+    "angular-cookies": "^1.5.9"
   }
 }

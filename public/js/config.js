@@ -8,7 +8,11 @@ requirejs.config({
         'jquery': 'lib/jquery/jquery',
         'bootstrap': "lib/bootstrap/bootstrap",
         'router': 'lib/angular-ui-router/angular-ui-router',
-        'angular': 'lib/angular/angular'
+        'cookies': 'lib/angular-cookies/angular-cookies',
+        'angular': 'lib/angular/angular',
+        'home':'home',
+        'userManage':'userManage',
+        'userService':'userService',
     },
     shim: {
         'angular' : {
@@ -16,6 +20,9 @@ requirejs.config({
             exports : 'angular'
         },
         'router': {
+            deps: ['angular']
+        },
+        'cookies': {
             deps: ['angular']
         },
         'bootstrap': {
@@ -32,9 +39,21 @@ requirejs(['angular'], function(angular) {
 requirejs(['router'], function() {
 
 });
+requirejs(['cookies'], function() {
+
+});
 requirejs(['bootstrap'], function(bootstrap) {
 
 });
 require(['app'], function(app) {
+
+});
+require(['home'], function() {
+
+});
+require(['userManage'], function() {
+
+});
+require(['userService'], function() {
 
 });
