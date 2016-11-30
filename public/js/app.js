@@ -2,27 +2,35 @@
  * Created by LakeHm on 2016/11/4.
  */
 define(['jquery','angular','router','cookies'], function() {
-    angular.module('hawkui', ['ui.router','ngCookies','hawkui.home.userManage'])
+    angular.module('home', ['ui.router','ngCookies','home.userManage','home.overview'])
         .config(['$stateProvider',function ($stateProvider) {
-            $stateProvider.state('home', {
-                templateUrl: '../views/login.html',
-                url: "/home",
-                controller: "HomeCtrl"
-            }).state('home.userManage', {
+            $stateProvider.state('userManage', {
                 templateUrl: '../views/userManage.html',
                 url: "/userManage",
                 controller: "UserManageCtrl"
             })
-            .state('home.overview', {
+            .state('userManage.userOperation', {
+                templateUrl: '../views/userOperation.html',
+                url: "/userOperation/{username}",
+                controller: "UserOperationCtrl"
+            })
+            .state('userManage.addUser', {
+                templateUrl: '../views/addUser.html',
+                url: "/addUser",
+                controller: "AddUserCtrl"
+            })
+            .state('overview', {
                 templateUrl: '../views/overview.html',
                 url: "/overview",
-                controller: function () {
-
-                }
+                controller: "OverViewCtrl"
             });
         }])
-        .controller('HomeCtrl', ['$scope','$http','$window','$cookieStore',
-            function ($scope,$http,$window,$cookieStore) {
+        .controller('HomeCtrl', ['$rootScope','$scope','$http','$window','$cookieStore','$state',
+            function ($rootScope,$scope,$http,$window,$cookieStore,$state) {
+            //java后台ip
+            $scope.ip = '114.212.118.115';
+            $scope.port = '8088';
+
             //检测用户登录
             $scope.loginDetail = {
                 username: '',
@@ -57,7 +65,7 @@ define(['jquery','angular','router','cookies'], function() {
                     return ;
                 }
 
-                var url = 'http://localhost:8088/user/login?username=' + loginDetail.username +
+                var url = 'http://'+$scope.ip+':'+$scope.port+'/user/login?username=' + loginDetail.username +
                     '&password=' + loginDetail.password;
                 $http.get(url)
                 .success(function(data) {
@@ -73,6 +81,7 @@ define(['jquery','angular','router','cookies'], function() {
                             $cookieStore.put("user", loginUser);
                         }
                         $('#myModal').modal('hide');
+                        $state.go('overview');
                     } else {
                         alert('用户名或密码错误');
                     }
@@ -91,6 +100,17 @@ define(['jquery','angular','router','cookies'], function() {
                 $scope.user = user;
                 $('#myModal').modal('show');
             }
+
+            //订阅状态转移事件用于用户状态跳转时的权限认证
+            $rootScope.$on('$stateChangeStart', function(event, toState) {
+                if(toState.name == 'userManage') {
+                    if($scope.user.role != 'root') {
+                        event.preventDefault();
+                        alert('权限不够，请使用root账户登录');
+                    }
+                }
+            });
+
         }]);
-    angular.bootstrap(document,['hawkui']);
+    angular.bootstrap(document,['home']);
 });

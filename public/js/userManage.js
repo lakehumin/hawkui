@@ -2,7 +2,7 @@
  * Created by LakeHm on 2016/11/23.
  */
 define(['angular'], function() {
-    angular.module('hawkui.home.userManage', ['ui.router'])
+    angular.module('home.userManage', ['home.userManage.userOperation','home.userManage.addUser'])
         .controller('UserManageCtrl', ['$scope','$http', function ($scope,$http) {
             var vm = {};
             $scope.vm = vm;
@@ -17,11 +17,16 @@ define(['angular'], function() {
             ];
 
             function getNameList() {
-                $http.get('http://localhost:8088/user/getAll')
+                var url = 'http://'+$scope.ip+':'+$scope.port+'/user/getAll';
+                $http.get(url)
                     .success(function(data){
                         vm.userList = data;
                     });
             }
             getNameList();
+            
+            vm.addUser = function () {
+                
+            }
         }]);
 });

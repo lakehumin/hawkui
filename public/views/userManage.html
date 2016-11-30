@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html>
 <body>
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <h1 class="page-header">用户管理</h1>
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>id</th>
-                <th>用户名</th>
-                <th>密码</th>
-                <th>类型</th>
-                <th>操作</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="user in vm.userList">
-                <td>{{user.id}}</td>
-                <td>{{user.username}}</td>
-                <td>{{user.password}}</td>
-                <td>{{user.type}}</td>
-                <td><a>修改</a><a>删除</a></td>
-            </tr>
-            </tbody>
-        </table>
+<div ui-view>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h1 class="page-header">用户管理</h1>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>用户名</th>
+                    <th>密码</th>
+                    <th>类型</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="user in vm.userList">
+                    <td>{{user.id}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.password}}</td>
+                    <td>{{user.type}}</td>
+                    <td><a ui-sref="userManage.userOperation({username:'{{user.username}}'})">编辑</a></td>
+                </tr>
+                </tbody>
+            </table>
+            <button ui-sref="userManage.addUser" type="button" class="btn btn-info">添加用户</button>
+        </div>
     </div>
 </div>
 </body>

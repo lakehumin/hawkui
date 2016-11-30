@@ -10,9 +10,11 @@ requirejs.config({
         'router': 'lib/angular-ui-router/angular-ui-router',
         'cookies': 'lib/angular-cookies/angular-cookies',
         'angular': 'lib/angular/angular',
-        'home':'home',
         'userManage':'userManage',
-        'userService':'userService',
+        'userOperation':'userOperation',
+        'addUser':'addUser',
+        'overview':'overview',
+        'bmap':'lib/angular-baidu-map.min/angular-baidu-map.min',
     },
     shim: {
         'angular' : {
@@ -27,6 +29,18 @@ requirejs.config({
         },
         'bootstrap': {
             deps: ['jquery']
+        },
+        'bmap': {
+            deps: ['angular']
+        },
+        'userManage': {
+            deps: ['userOperation','addUser']
+        },
+        'overview': {
+            deps: ['bmap']
+        },
+        'app': {
+            deps: ['userManage','overview']
         }
     }
 });
@@ -46,14 +60,5 @@ requirejs(['bootstrap'], function(bootstrap) {
 
 });
 require(['app'], function(app) {
-
-});
-require(['home'], function() {
-
-});
-require(['userManage'], function() {
-
-});
-require(['userService'], function() {
 
 });
