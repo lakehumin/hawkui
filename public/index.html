@@ -54,13 +54,19 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li ui-sref-active="active">
-                    <a ui-sref="overview">总览</a>
+                    <a ui-sref="overview">
+                        <span class="glyphicon glyphicon-home"></span> 总览
+                    </a>
                 </li>
                 <li ui-sref-active="active">
-                    <a ui-sref="userManage">用户管理</a>
+                    <a ui-sref="userManage">
+                        <span class="glyphicon glyphicon-user"></span> 用户管理
+                    </a>
                 </li>
-                <li ui-sref-active="">
-                    <a ui-sref="userManage.addUser">待定</a>
+                <li ui-sref-active="active">
+                    <a ui-sref="deviceInfo">
+                        <span class="glyphicon glyphicon-th-list"></span> 设备信息
+                    </a>
                 </li>
                 <li ui-sref-active="">
                     <a ui-sref="userManage.addUser">待定</a>
@@ -74,7 +80,7 @@
             </ul>
         </div>
 
-        <div ui-view></div>
+        <div ui-view class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"></div>
     </div>
 </div>
 </body>

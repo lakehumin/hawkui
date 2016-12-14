@@ -15,6 +15,8 @@ requirejs.config({
         'addUser':'addUser',
         'overview':'overview',
         'bmap':'lib/angular-baidu-map.min/angular-baidu-map.min',
+        'deviceInfo':'deviceInfo',
+        'deviceInfoDetail':'deviceInfoDetail'
     },
     shim: {
         'angular' : {
@@ -39,8 +41,11 @@ requirejs.config({
         'overview': {
             deps: ['bmap']
         },
+        'deviceInfo': {
+            deps: ['deviceInfoDetail']
+        },
         'app': {
-            deps: ['userManage','overview']
+            deps: ['userManage','deviceInfo','overview']
         }
     }
 });

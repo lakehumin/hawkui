@@ -2,7 +2,7 @@
  * Created by LakeHm on 2016/11/4.
  */
 define(['jquery','angular','router','cookies'], function() {
-    angular.module('home', ['ui.router','ngCookies','home.userManage','home.overview'])
+    angular.module('home', ['ui.router','ngCookies','home.userManage','home.deviceInfo','home.overview'])
         .config(['$stateProvider',function ($stateProvider) {
             $stateProvider.state('userManage', {
                 templateUrl: '../views/userManage.html',
@@ -19,8 +19,18 @@ define(['jquery','angular','router','cookies'], function() {
                 url: "/addUser",
                 controller: "AddUserCtrl"
             })
+            .state('deviceInfo', {
+                templateUrl: '../views/deviceInfo.html',
+                url: "/deviceInfo",
+                controller: "DeviceInfoCtrl"
+            })
+            .state('deviceInfo.detail', {
+                templateUrl: '../views/deviceInfoDetail.html',
+                url: "/detail/{id}",
+                controller: "DeviceInfoDetailCtrl"
+            })
             .state('overview', {
-                templateUrl: '../views/overview.html',
+                templateUrl: '../views/offlineMap.html',
                 url: "/overview",
                 controller: "OverViewCtrl"
             });
