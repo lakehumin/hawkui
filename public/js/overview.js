@@ -91,15 +91,5 @@ define(['angular','bmap'], function() {
             });
 
 
-        }])
-        .filter('stateFilter', function(){
-            var filter = function(isOnLine){
-                if(isOnLine == 1) {
-                    return '在线';
-                } else {
-                    return '离线';
-                }
-            };
-            return filter;
-        });
+        }]);
 });

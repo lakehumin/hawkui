@@ -2,8 +2,8 @@
 <html>
 <body>
 <div>
-    <div>
-        <h1 class="page-header">设备 {{vm.deviceInfo.id}} 的详细信息</h1>
+    <h1 class="page-header">设备 {{vm.deviceInfo.id}} 的详细信息</h1>
+    <div  class="col-sm-4">
         <dl class="dl-horizontal" style="font-size: 30px">
             <dt>id</dt>
             <dd>{{vm.deviceInfo.id}}</dd>
@@ -20,6 +20,11 @@
             <dt>工作状态</dt>
             <dd>{{vm.deviceInfo.workstate}}</dd>
         </dl>
+        <img src="monitorImg/test.jpg"/>
+    </div>
+    <div class="col-sm-offset-4">
+        <div id="container1"></div>
+        <div id="container2"></div>
     </div>
 </div>
 </body>

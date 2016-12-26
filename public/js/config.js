@@ -10,6 +10,7 @@ requirejs.config({
         'router': 'lib/angular-ui-router/angular-ui-router',
         'cookies': 'lib/angular-cookies/angular-cookies',
         'angular': 'lib/angular/angular',
+        'highcharts': 'lib/highcharts/highcharts',
         'userManage':'userManage',
         'userOperation':'userOperation',
         'addUser':'addUser',
@@ -30,6 +31,9 @@ requirejs.config({
             deps: ['angular']
         },
         'bootstrap': {
+            deps: ['jquery']
+        },
+        'highcharts': {
             deps: ['jquery']
         },
         'bmap': {
@@ -62,6 +66,9 @@ requirejs(['cookies'], function() {
 
 });
 requirejs(['bootstrap'], function(bootstrap) {
+
+});
+requirejs(['highcharts'], function() {
 
 });
 require(['app'], function(app) {
