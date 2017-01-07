@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div>
+    <h1 class="page-header">监控总览</h1>
+    <div class="col-md-4" ng-repeat="device in vm.deviceList">
+        <div ui-sref="deviceInfo.detail({id:'{{device.terminal_id}}'})" class="card">
+            <div id="container{{device.terminal_id}}1" class="card-solidgauge"></div>
+            <div id="container{{device.terminal_id}}2" class="card-solidgauge"></div>
+            <table class="card-table">
+                <tr>
+                    <td>设备编号</td>
+                    <td>{{device.terminal_id}}</td>
+                    <td>工作状态</td>
+                    <td>{{device.workstate}}</td>
+                </tr>
+                <tr>
+                    <td>地理位置</td>
+                    <td>{{device.location}}</td>
+                    <td>在线状态</td>
+                    <td>{{device.islinked | stateFilter}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

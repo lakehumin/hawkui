@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html>
 <body>
-<div class="container-fluid">
+<div>
     <h1 class="page-header">编辑用户:{{vm.user.username}}</h1>
     <div class="row">
-        <div class="col-md-4 col-md-offset-4">
+        <div class="col-md-4 col-md-offset-1">
             <div class="col-md-7 col-md-offset-1">
-                <form class="form-horizontal" ng-submit="vm.updateUser(vm.user)">
-                    <div class="control-group">
+                <form class="form-horizontal form-size" ng-submit="vm.updateUser(vm.user)">
+                    <div class="control-group label-interval">
                         <div class="controls">
                             <label class="control-label" for="newPassword">新密码：</label>
                             <input ng-model="vm.user.password" class="pull-right" id="newPassword" type="password" />
                         </div>
                     </div>
-                    <div class="control-group">
+                    <div class="control-group label-interval">
                         <div class="controls">
                             <label class="control-label" for="confirmPassword">确认密码：</label>
                             <input ng-model="vm.confirmPassword" class="pull-right" id="confirmPassword" type="password" />
                         </div>
                     </div>
-                    <div class="">
-                        <button type="submit" class="btn btn-primary">修改</button>
-                        <button ng-click="vm.deleteUser()" type="button" class="btn btn-danger pull-right">删除用户</button>
+                    <div class="label-interval">
+                        <button type="submit" class="btn btn-primary btn-size">修改密码</button>
+                        <button ng-click="vm.deleteUser()" type="button" class="btn btn-danger pull-right btn-size">删除用户</button>
                     </div>
                 </form>
-                </div>
+            </div>
         </div>
     </div>
 </div>

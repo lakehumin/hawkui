@@ -6,171 +6,213 @@ define(['angular','jquery','highcharts'], function() {
         .controller('DeviceInfoDetailCtrl', ['$scope','$http','$stateParams', function ($scope,$http,$stateParams) {
             var vm = {};
             $scope.vm = vm;
-            vm.deviceInfo={
-                id:'XXX',
-                location:'XXX',
-                tel:'15264684556',
-                state:true,
-                battery:'23%',
-                voltage:'7.6V',
-                workstate:'normal'
-            };
+            vm.deviceInfo={};
+            vm.deviceHistory=[];
+            vm.deviceBatteryHistory=[];
+            vm.deviceVoltageHistory=[];
+            vm.imgsrc = 'monitorImg/common.jpg';
 
-            var url = 'http://'+$scope.ip+':'+$scope.port+'/device/search/detail?id='+$stateParams.id;
-            $http.get(url).success(function(data){
-                if(data.success) {
-                    vm.deviceInfo = data.data;
+            var date = new Date(new Date().getTime() - 29 * 24 * 60 * 60 * 1000); //获取近来30天历史数据
+
+            getDetail();
+            drawHistory();
+            getHistory();
+            getImgsrc();
+
+            function getDetail() {
+                var url = 'http://'+$scope.ip+':'+$scope.port+'/device/search/detail?id='+$stateParams.id;
+                $http.get(url).success(function(data){
+                    if(data.success) {
+                        vm.deviceInfo = data.data;
+                    }
+                });
+            }
+
+            function drawHistory() {
+                $('#container1').highcharts({
+                    chart: {
+                        zoomType: 'x',
+                        spacingRight: 20
+                    },
+                    credits:{
+                        enabled:false // 禁用版权信息
+                    },
+                    title: {
+                        text: '电池电量随时间变化曲线',
+                        style:{
+                            fontSize:'20px',
+                            fontWeight:"bold",
+                            fontFamily:'微软雅黑'
+                        }
+                    },
+                    subtitle: {
+                        text: document.ontouchstart === undefined ?
+                            '点击并拖动来放大' :
+                            '双指操作放大'
+                    },
+                    xAxis: {
+                        type: 'datetime',
+                        maxZoom: 14 * 24 * 3600000, // fourteen days
+                        title: {
+                            text: null
+                        }
+                    },
+                    yAxis: {
+                        title: {
+                            text: '电量剩余（单位：%）'
+                        }
+                    },
+                    tooltip: {
+                        shared: true
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        area: {
+                            fillColor: {
+                                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
+                                stops: [
+                                    [0, Highcharts.getOptions().colors[0]],
+                                    [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                                ]
+                            },
+                            lineWidth: 1,
+                            marker: {
+                                enabled: false
+                            },
+                            shadow: false,
+                            states: {
+                                hover: {
+                                    lineWidth: 1
+                                }
+                            },
+                            threshold: null
+                        }
+                    },
+
+                    series: [{
+                        type: 'area',
+                        name: '电压值',
+                        pointInterval: 24 * 3600 * 1000,
+                        pointStart: Date.UTC(date.getYear(), date.getMonth(), date.getDate()),
+                        data: []
+                    }]
+                });
+
+                $('#container2').highcharts({
+                    chart: {
+                        zoomType: 'x',
+                        spacingRight: 20
+                    },
+                    credits:{
+                        enabled:false // 禁用版权信息
+                    },
+                    title: {
+                        text: '电压随时间变化曲线',
+                        style:{
+                            fontSize:'20px',
+                            fontWeight:"bold",
+                            fontFamily:'微软雅黑'
+                        }
+                    },
+                    subtitle: {
+                        text: document.ontouchstart === undefined ?
+                            '点击并拖动来放大' :
+                            '双指操作放大'
+                    },
+                    xAxis: {
+                        type: 'datetime',
+                        maxZoom: 14 * 24 * 3600000, // fourteen days
+                        title: {
+                            text: null
+                        }
+                    },
+                    yAxis: {
+                        title: {
+                            text: '电压值（单位：V）'
+                        }
+                    },
+                    tooltip: {
+                        shared: true
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        area: {
+                            fillColor: {
+                                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
+                                stops: [
+                                    [0, Highcharts.getOptions().colors[0]],
+                                    [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                                ]
+                            },
+                            lineWidth: 1,
+                            marker: {
+                                enabled: false
+                            },
+                            shadow: false,
+                            states: {
+                                hover: {
+                                    lineWidth: 1
+                                }
+                            },
+                            threshold: null
+                        }
+                    },
+
+                    series: [{
+                        type: 'area',
+                        name: '电压值',
+                        pointInterval: 24 * 3600 * 1000,
+                        pointStart: Date.UTC(date.getYear(), date.getMonth(), date.getDate()),
+                        data: []
+                    }]
+                });
+            }
+
+            function getHistory() {
+
+                var url = 'http://'+$scope.ip+':'+$scope.port+'/device/search/devicehistory?id='+$stateParams.id
+                    +'&date='+date.getTime();
+                $http.get(url).success(function(data){
+                    if(data.success) {
+                        vm.deviceHistory = data.data;
+                        updateHistory();
+                    }
+                });
+            }
+
+            function updateHistory() {
+                var i = 0, j = 0;
+                var tempdate = date;
+                for(; i < 30; i ++) {
+                    if(vm.deviceHistory[j] && tempdate.toDateString() === new Date(vm.deviceHistory[j].date).toDateString()) {
+                        vm.deviceBatteryHistory[i] = parseFloat(vm.deviceHistory[j].battery);
+                        vm.deviceVoltageHistory[i] = parseFloat(vm.deviceHistory[j].voltage);
+                        j ++;
+                    } else {
+                        vm.deviceBatteryHistory[i] = 0;
+                        vm.deviceVoltageHistory[i] = 0;
+                    }
+                    tempdate = new Date(tempdate.getTime() + 24*3600*1000);
                 }
-            });
 
-            $('#container1').highcharts({
-                chart: {
-                    zoomType: 'x',
-                    spacingRight: 20
-                },
-                credits:{
-                    enabled:false // 禁用版权信息
-                },
-                title: {
-                    text: '电压随时间变化曲线',
-                    style:{
-                        fontSize:'25px',
-                        fontWeight:"bold",
-                        fontFamily:'fantasy'
-                    }
-                },
-                subtitle: {
-                    text: document.ontouchstart === undefined ?
-                        '点击并拖动来放大' :
-                        '双指操作放大'
-                },
-                xAxis: {
-                    type: 'datetime',
-                    maxZoom: 14 * 24 * 3600000, // fourteen days
-                    title: {
-                        text: null
-                    }
-                },
-                yAxis: {
-                    title: {
-                        text: '电压值（单位：V）'
-                    }
-                },
-                tooltip: {
-                    shared: true
-                },
-                legend: {
-                    enabled: false
-                },
-                plotOptions: {
-                    area: {
-                        fillColor: {
-                            linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
-                            stops: [
-                                [0, Highcharts.getOptions().colors[0]],
-                                [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                            ]
-                        },
-                        lineWidth: 1,
-                        marker: {
-                            enabled: false
-                        },
-                        shadow: false,
-                        states: {
-                            hover: {
-                                lineWidth: 1
-                            }
-                        },
-                        threshold: null
-                    }
-                },
+                $('#container1').highcharts().series[0].setData(vm.deviceBatteryHistory);
+                $('#container2').highcharts().series[0].setData(vm.deviceVoltageHistory);
+            }
 
-                series: [{
-                    type: 'area',
-                    name: '电压值',
-                    pointInterval: 24 * 3600 * 1000,
-                    pointStart: Date.UTC(2016, 0, 01),
-                    data: [
-                        0.8446, 0.8445, 0.8444, 0.8451,    0.8418, 0.8264,    0.8258, 0.8232,    0.8233, 0.8258,
-                        0.8283, 0.8278, 0.8256, 0.8292,    0.8239, 0.8239,    0.8245, 0.8265,    0.8261, 0.8269,
-                        0.8273, 0.8244, 0.8244, 0.8172,    0.8139, 0.8146,    0.8164, 0.82,    0.8269, 0.8269,
-                        0.8269, 0.8258, 0.8247, 0.8286,    0.8289, 0.8316,    0.832, 0.8333,    0.8352, 0.8357,
-                        0.8355, 0.8354, 0.8403, 0.8403,    0.8406, 0.8403,    0.8396, 0.8418,    0.8409, 0.8384,
-                        0.8386, 0.8372, 0.839, 0.84, 0.8389, 0.84, 0.8423, 0.8423, 0.8435, 0.8422,
-                        0.838, 0.8373, 0.8316, 0.8303,    0.8303, 0.8302,    0.8369, 0.84, 0.8385, 0.84,
-                        0.8401, 0.8402, 0.8381, 0.8351,    0.8314, 0.8273,    0.8213, 0.8207,    0.8207, 0.8215,
-                        0.8242, 0.8273, 0.8301, 0.8346,    0.8312, 0.8312,    0.8312, 0.8306,    0.8327, 0.8282,
-                        0.824, 0.8255, 0.8256, 0.8273, 0.8209, 0.8151, 0.8149, 0.8213, 0.8273, 0.8273,
-                        0.8261, 0.8252, 0.824, 0.8262, 0.8258, 0.8261, 0.826, 0.8199, 0.8153, 0.8097,
-                        0.8101, 0.8119, 0.8107, 0.8105,    0.8084, 0.8069,    0.8047, 0.8023,    0.7965, 0.7919,
-                        0.7921, 0.7922, 0.7934, 0.7918,    0.7915, 0.787, 0.7861, 0.7861, 0.7853, 0.7867,
-                        0.7827, 0.7834, 0.7766, 0.7751, 0.7739, 0.7767, 0.7802, 0.7788, 0.7828, 0.7816,
-                        0.7829, 0.783, 0.7829, 0.7781, 0.7811, 0.7831, 0.7826, 0.7855, 0.7855, 0.7845,
-                        0.7798, 0.7777, 0.7822, 0.7785, 0.7744, 0.7743, 0.7726, 0.7766, 0.7806, 0.785,
-                        0.7907, 0.7912, 0.7913, 0.7931, 0.7952, 0.7951, 0.7928, 0.791, 0.7913, 0.7912,
-                        0.7941, 0.7953, 0.7921, 0.7919, 0.7968, 0.7999, 0.7999, 0.7974, 0.7942, 0.796,
-                        0.7969, 0.7862, 0.7821, 0.7821, 0.7821, 0.7811, 0.7833, 0.7849, 0.7819, 0.7809,
-                        0.7809, 0.7827, 0.7848, 0.785, 0.7873, 0.7894, 0.7907, 0.7909, 0.7947, 0.7987,
-                        0.799, 0.7927, 0.79, 0.7878, 0.7878, 0.7907, 0.7922, 0.7937, 0.786, 0.787,
-                        0.7838, 0.7838, 0.7837, 0.7836, 0.7806, 0.7825, 0.7798, 0.777, 0.777, 0.7772,
-                        0.7793, 0.7788, 0.7785, 0.7832, 0.7865, 0.7865, 0.7853, 0.7847, 0.7809, 0.778,
-                        0.7799, 0.78, 0.7801, 0.7765, 0.7785, 0.7811, 0.782, 0.7835, 0.7845, 0.7844,
-                        0.782, 0.7811, 0.7795, 0.7794, 0.7806, 0.7794, 0.7794, 0.7778, 0.7793, 0.7808,
-                        0.7824, 0.787, 0.7894, 0.7893, 0.7882, 0.7871, 0.7882, 0.7871, 0.7878, 0.79,
-                        0.7901, 0.7898, 0.7879, 0.7886, 0.7858, 0.7814, 0.7825, 0.7826, 0.7826, 0.786,
-                        0.7878, 0.7868, 0.7883, 0.7893, 0.7892, 0.7876, 0.785, 0.787, 0.7873, 0.7901,
-                        0.7936, 0.7939, 0.7938, 0.7956, 0.7975, 0.7978, 0.7972, 0.7995, 0.7995, 0.7994,
-                        0.7976, 0.7977, 0.796, 0.7922, 0.7928, 0.7929, 0.7948, 0.797, 0.7953, 0.7907,
-                        0.7872, 0.7852, 0.7852, 0.786, 0.7862, 0.7836, 0.7837, 0.784, 0.7867, 0.7867,
-                        0.7869, 0.7837, 0.7827, 0.7825, 0.7779, 0.7791, 0.779, 0.7787, 0.78, 0.7807,
-                        0.7803, 0.7817, 0.7799, 0.7799, 0.7795, 0.7801, 0.7765, 0.7725, 0.7683, 0.7641,
-                        0.7639, 0.7616, 0.7608, 0.759, 0.7582, 0.7539, 0.75, 0.75, 0.7507, 0.7505,
-                        0.7516, 0.7522, 0.7531, 0.7577, 0.7577, 0.7582, 0.755, 0.7542, 0.7576, 0.7616,
-                        0.7648, 0.7648, 0.7641, 0.7614, 0.757, 0.7587, 0.7588, 0.762, 0.762, 0.7617,
-                        0.7618, 0.7615, 0.7612, 0.7596, 0.758, 0.758, 0.758, 0.7547, 0.7549, 0.7613,
-                        0.7655, 0.7693, 0.7694, 0.7688, 0.7678, 0.7708, 0.7727, 0.7749, 0.7741, 0.7741,
-                        0.7732, 0.7727, 0.7737, 0.7724, 0.7712, 0.772, 0.7721, 0.7717, 0.7704, 0.769,
-                        0.7711, 0.774, 0.7745, 0.7745, 0.774, 0.7716, 0.7713, 0.7678, 0.7688, 0.7718,
-                        0.7718, 0.7728, 0.7729, 0.7698, 0.7685, 0.7681, 0.769, 0.769, 0.7698, 0.7699,
-                        0.7651, 0.7613, 0.7616, 0.7614, 0.7614, 0.7607, 0.7602, 0.7611, 0.7622, 0.7615,
-                        0.7598, 0.7598, 0.7592, 0.7573, 0.7566, 0.7567, 0.7591, 0.7582, 0.7585, 0.7613,
-                        0.7631, 0.7615, 0.76, 0.7613, 0.7627, 0.7627, 0.7608, 0.7583, 0.7575, 0.7562,
-                        0.752, 0.7512, 0.7512, 0.7517, 0.752, 0.7511, 0.748, 0.7509, 0.7531, 0.7531,
-                        0.7527, 0.7498, 0.7493, 0.7504, 0.75, 0.7491, 0.7491, 0.7485, 0.7484, 0.7492,
-                        0.7471, 0.7459, 0.7477, 0.7477, 0.7483, 0.7458, 0.7448, 0.743, 0.7399, 0.7395,
-                        0.7395, 0.7378, 0.7382, 0.7362, 0.7355, 0.7348, 0.7361, 0.7361, 0.7365, 0.7362,
-                        0.7331, 0.7339, 0.7344, 0.7327, 0.7327, 0.7336, 0.7333, 0.7359, 0.7359, 0.7372,
-                        0.736, 0.736, 0.735, 0.7365, 0.7384, 0.7395, 0.7413, 0.7397, 0.7396, 0.7385,
-                        0.7378, 0.7366, 0.74, 0.7411, 0.7406, 0.7405, 0.7414, 0.7431, 0.7431, 0.7438,
-                        0.7443, 0.7443, 0.7443, 0.7434, 0.7429, 0.7442, 0.744, 0.7439, 0.7437, 0.7437,
-                        0.7429, 0.7403, 0.7399, 0.7418, 0.7468, 0.748, 0.748, 0.749, 0.7494, 0.7522,
-                        0.7515, 0.7502, 0.7472, 0.7472, 0.7462, 0.7455, 0.7449, 0.7467, 0.7458, 0.7427,
-                        0.7427, 0.743, 0.7429, 0.744, 0.743, 0.7422, 0.7388, 0.7388, 0.7369, 0.7345,
-                        0.7345, 0.7345, 0.7352, 0.7341, 0.7341, 0.734, 0.7324, 0.7272, 0.7264, 0.7255,
-                        0.7258, 0.7258, 0.7256, 0.7257, 0.7247, 0.7243, 0.7244, 0.7235, 0.7235, 0.7235,
-                        0.7235, 0.7262, 0.7288, 0.7301, 0.7337, 0.7337, 0.7324, 0.7297, 0.7317, 0.7315,
-                        0.7288, 0.7263, 0.7263, 0.7242, 0.7253, 0.7264, 0.727, 0.7312, 0.7305, 0.7305,
-                        0.7318, 0.7358, 0.7409, 0.7454, 0.7437, 0.7424, 0.7424, 0.7415, 0.7419, 0.7414,
-                        0.7377, 0.7355, 0.7315, 0.7315, 0.732, 0.7332, 0.7346, 0.7328, 0.7323, 0.734,
-                        0.734, 0.7336, 0.7351, 0.7346, 0.7321, 0.7294, 0.7266, 0.7266, 0.7254, 0.7242,
-                        0.7213, 0.7197, 0.7209, 0.721, 0.721, 0.721, 0.7209, 0.7159, 0.7133, 0.7105,
-                        0.7099, 0.7099, 0.7093, 0.7093, 0.7076, 0.707, 0.7049, 0.7012, 0.7011, 0.7019,
-                        0.7046, 0.7063, 0.7089, 0.7077, 0.7077, 0.7077, 0.7091, 0.7118, 0.7079, 0.7053,
-                        0.705, 0.7055, 0.7055, 0.7045, 0.7051, 0.7051, 0.7017, 0.7, 0.6995, 0.6994,
-                        0.7014, 0.7036, 0.7021, 0.7002, 0.6967, 0.695, 0.695, 0.6939, 0.694, 0.6922,
-                        0.6919, 0.6914, 0.6894, 0.6891, 0.6904, 0.689, 0.6834, 0.6823, 0.6807, 0.6815,
-                        0.6815, 0.6847, 0.6859, 0.6822, 0.6827, 0.6837, 0.6823, 0.6822, 0.6822, 0.6792,
-                        0.6746, 0.6735, 0.6731, 0.6742, 0.6744, 0.6739, 0.6731, 0.6761, 0.6761, 0.6785,
-                        0.6818, 0.6836, 0.6823, 0.6805, 0.6793, 0.6849, 0.6833, 0.6825, 0.6825, 0.6816,
-                        0.6799, 0.6813, 0.6809, 0.6868, 0.6933, 0.6933, 0.6945, 0.6944, 0.6946, 0.6964,
-                        0.6965, 0.6956, 0.6956, 0.695, 0.6948, 0.6928, 0.6887, 0.6824, 0.6794, 0.6794,
-                        0.6803, 0.6855, 0.6824, 0.6791, 0.6783, 0.6785, 0.6785, 0.6797, 0.68, 0.6803,
-                        0.6805, 0.676, 0.677, 0.677, 0.6736, 0.6726, 0.6764, 0.6821, 0.6831, 0.6842,
-                        0.6842, 0.6887, 0.6903, 0.6848, 0.6824, 0.6788, 0.6814, 0.6814, 0.6797
-                    ]
-                }]
-            });
+            function getImgsrc() {
+                var url = 'http://'+$scope.ip+':'+$scope.port+'/device/search/img?id='+$stateParams.id
+                    +'&date='+new Date().getTime();
+                $http.get(url).success(function(data){
+                    if(data.success) {
+                        vm.imgsrc = data.data.img_path;
+                    }
+                });
 
+            }
         }])
         .filter('stateFilter', function(){
             var filter = function(isOnLine){

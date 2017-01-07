@@ -2,31 +2,34 @@
 <html>
 <body>
 <div ui-view>
-    <div>
-        <h1 class="page-header">设备信息</h1>
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>编号</th>
-                    <th>电话号码</th>
-                    <th>位置</th>
-                    <th>状态</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="device in vm.deviceList">
-                    <td>
-                        <a ui-sref="deviceInfo.detail({id:'{{device.terminal_id}}'})">{{device.terminal_id}}</a>
-                    </td>
-                    <td>{{device.tel_num}}</td>
-                    <td>{{device.location}}</td>
-                    <td>{{device.islinked | stateFilter}}</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+    <h1 class="page-header">设备信息</h1>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>编号</th>
+                <th>电话号码</th>
+                <th>位置</th>
+                <th>在线状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="device in vm.deviceList">
+                <td>
+                    <a ui-sref="deviceInfo.detail({id:'{{device.terminal_id}}'})">{{device.terminal_id}}</a>
+                </td>
+                <td>{{device.tel_num}}</td>
+                <td>{{device.location}}</td>
+                <td>{{device.islinked | stateFilter}}</td>
+                <td>
+                    <a ui-sref="deviceInfo.modify({id:'{{device.terminal_id}}',device:{{device}}})">编辑</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
+    <button ui-sref="deviceInfo.add" type="button" class="btn btn-info btn-size">添加设备</button>
 </div>
 </body>
 </html>

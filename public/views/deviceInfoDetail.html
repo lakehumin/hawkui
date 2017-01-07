@@ -4,27 +4,60 @@
 <div>
     <h1 class="page-header">设备 {{vm.deviceInfo.id}} 的详细信息</h1>
     <div  class="col-sm-4">
-        <dl class="dl-horizontal" style="font-size: 30px">
-            <dt>id</dt>
-            <dd>{{vm.deviceInfo.id}}</dd>
-            <dt>电话号码</dt>
-            <dd>{{vm.deviceInfo.tel}}</dd>
-            <dt>位置</dt>
-            <dd>{{vm.deviceInfo.location}}</dd>
-            <dt>在线状态</dt>
-            <dd>{{vm.deviceInfo.state | stateFilter}}</dd>
-            <dt>电池</dt>
-            <dd>{{vm.deviceInfo.battery}}</dd>
-            <dt>电压</dt>
-            <dd>{{vm.deviceInfo.voltage}}</dd>
-            <dt>工作状态</dt>
-            <dd>{{vm.deviceInfo.workstate}}</dd>
-        </dl>
-        <img src="monitorImg/test.jpg"/>
+        <!--<dl class="dl-horizontal" style="font-size: 25px">-->
+            <!--<dt>id</dt>-->
+            <!--<dd>{{vm.deviceInfo.id}}</dd>-->
+            <!--<dt>电话号码</dt>-->
+            <!--<dd>{{vm.deviceInfo.tel}}</dd>-->
+            <!--<dt>位置</dt>-->
+            <!--<dd>{{vm.deviceInfo.location}}</dd>-->
+            <!--<dt>在线状态</dt>-->
+            <!--<dd>{{vm.deviceInfo.state | stateFilter}}</dd>-->
+            <!--<dt>电池</dt>-->
+            <!--<dd>{{vm.deviceInfo.battery}}</dd>-->
+            <!--<dt>电压</dt>-->
+            <!--<dd>{{vm.deviceInfo.voltage}}</dd>-->
+            <!--<dt>工作状态</dt>-->
+            <!--<dd>{{vm.deviceInfo.workstate}}</dd>-->
+        <!--</dl>-->
+        <table style="font-size: 25px;width: 100%;margin-bottom: 20px;border-collapse: separate;
+    border-spacing: 5px 10px">
+            <tr>
+                <td>设备编号</td>
+                <td>{{vm.deviceInfo.id}}</td>
+            </tr>
+            <tr>
+                <td>电话号码</td>
+                <td>{{vm.deviceInfo.tel}}</td>
+            </tr>
+            <tr>
+                <td>位置</td>
+                <td>{{vm.deviceInfo.location}}</td>
+            </tr>
+            <tr>
+                <td>在线状态</td>
+                <td>{{vm.deviceInfo.state | stateFilter}}</td>
+            </tr>
+            <tr>
+                <td>电池</td>
+                <td>{{vm.deviceInfo.battery}}%</td>
+            </tr>
+            <tr>
+                <td>电压</td>
+                <td>{{vm.deviceInfo.voltage}}V</td>
+            </tr>
+            <tr>
+                <td>工作状态</td>
+                <td>{{vm.deviceInfo.workstate}}</td>
+            </tr>
+        </table>
+        <a ui-sref="deviceInfo.img({id:'{{vm.deviceInfo.id}}'})">
+            <img src={{vm.imgsrc}} style="height: 370px;width: 100%"/>
+        </a>
     </div>
     <div class="col-sm-offset-4">
-        <div id="container1"></div>
-        <div id="container2"></div>
+        <div id="container1" style="height: 370px;margin-bottom: 30px;"></div>
+        <div id="container2" style="height: 370px"></div>
     </div>
 </div>
 </body>

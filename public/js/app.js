@@ -1,8 +1,9 @@
 /**
  * Created by LakeHm on 2016/11/4.
  */
-define(['jquery','angular','router','cookies'], function() {
-    angular.module('home', ['ui.router','ngCookies','home.userManage','home.deviceInfo','home.overview'])
+define(['jquery','angular','router','cookies','bootstrap'], function() {
+    angular.module('home', ['ui.router','ngCookies','home.userManage','home.deviceInfo','home.overview',
+        'home.monitor'])
         .config(['$stateProvider',function ($stateProvider) {
             $stateProvider.state('userManage', {
                 templateUrl: '../views/userManage.html',
@@ -28,6 +29,27 @@ define(['jquery','angular','router','cookies'], function() {
                 templateUrl: '../views/deviceInfoDetail.html',
                 url: "/detail/{id}",
                 controller: "DeviceInfoDetailCtrl"
+            })
+            .state('deviceInfo.add', {
+                templateUrl: '../views/deviceInfoAdd.html',
+                url: "/add",
+                controller: "DeviceInfoAddCtrl"
+            })
+            .state('deviceInfo.modify', {
+                templateUrl: '../views/deviceInfoModify.html',
+                url: "/modify/{id}",
+                params:{"device":null},
+                controller: "DeviceInfoModifyCtrl"
+            })
+            .state('deviceInfo.img', {
+                templateUrl: '../views/deviceInfoImg.html',
+                url: "/historyImg/{id}",
+                controller: "DeviceInfoImgCtrl"
+            })
+            .state('monitor', {
+                templateUrl: '../views/monitor.html',
+                url: "/monitor",
+                controller: "MonitorCtrl"
             })
             .state('overview', {
                 templateUrl: '../views/offlineMap.html',
@@ -91,7 +113,7 @@ define(['jquery','angular','router','cookies'], function() {
                             $cookieStore.put("user", loginUser);
                         }
                         $('#myModal').modal('hide');
-                        $state.go('overview');
+                        $state.go('monitor');
                     } else {
                         alert('用户名或密码错误');
                     }
@@ -111,6 +133,25 @@ define(['jquery','angular','router','cookies'], function() {
                 $('#myModal').modal('show');
             }
 
+            $scope.searchText = '';
+            $scope.search = function () {
+                switch ($scope.searchText) {
+                    case '监控':
+                        $state.go('monitor');
+                        break;
+                    case '用户':
+                        $state.go('userManage');
+                        break;
+                    case '设备':
+                        $state.go('deviceInfo');
+                        break;
+                    case '地图':
+                        $state.go('overview');
+                        break;
+                }
+
+            }
+
             //订阅状态转移事件用于用户状态跳转时的权限认证
             $rootScope.$on('$stateChangeStart', function(event, toState) {
                 if(toState.name == 'userManage') {
@@ -120,7 +161,6 @@ define(['jquery','angular','router','cookies'], function() {
                     }
                 }
             });
-
         }]);
     angular.bootstrap(document,['home']);
 });

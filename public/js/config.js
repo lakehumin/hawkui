@@ -11,13 +11,19 @@ requirejs.config({
         'cookies': 'lib/angular-cookies/angular-cookies',
         'angular': 'lib/angular/angular',
         'highcharts': 'lib/highcharts/highcharts',
+        'highcharts-more': 'lib/highcharts-more/highcharts-more',
+        'solid-gauge': 'lib/solid-gauge/solid-gauge',
         'userManage':'userManage',
         'userOperation':'userOperation',
         'addUser':'addUser',
         'overview':'overview',
         'bmap':'lib/angular-baidu-map.min/angular-baidu-map.min',
         'deviceInfo':'deviceInfo',
-        'deviceInfoDetail':'deviceInfoDetail'
+        'deviceInfoDetail':'deviceInfoDetail',
+        'deviceInfoAdd':'deviceInfoAdd',
+        'deviceInfoModify':'deviceInfoModify',
+        'deviceInfoImg':'deviceInfoImg',
+        'monitor':'monitor'
     },
     shim: {
         'angular' : {
@@ -34,7 +40,8 @@ requirejs.config({
             deps: ['jquery']
         },
         'highcharts': {
-            deps: ['jquery']
+            deps: ['jquery'],
+            exports : 'Highcharts'
         },
         'bmap': {
             deps: ['angular']
@@ -42,35 +49,44 @@ requirejs.config({
         'userManage': {
             deps: ['userOperation','addUser']
         },
+        'monitor': {
+            deps: ['highcharts-more','solid-gauge']
+        },
+        'highcharts-more': {
+            deps: ['highcharts']
+        },
+        'solid-gauge': {
+            deps: ['highcharts-more','highcharts']
+        },
         'overview': {
             deps: ['bmap']
         },
         'deviceInfo': {
-            deps: ['deviceInfoDetail']
+            deps: ['deviceInfoDetail','deviceInfoAdd','deviceInfoModify','deviceInfoImg']
         },
         'app': {
-            deps: ['userManage','deviceInfo','overview']
+            deps: ['userManage','deviceInfo','overview','monitor']
         }
     }
 });
-requirejs(['jquery'], function(jquery) {
-
-});
-requirejs(['angular'], function(angular) {
-
-});
-requirejs(['router'], function() {
-
-});
-requirejs(['cookies'], function() {
-
-});
-requirejs(['bootstrap'], function(bootstrap) {
-
-});
-requirejs(['highcharts'], function() {
-
-});
+// requirejs(['jquery'], function(jquery) {
+//
+// });
+// requirejs(['angular'], function(angular) {
+//
+// });
+// requirejs(['router'], function() {
+//
+// });
+// requirejs(['cookies'], function() {
+//
+// });
+// requirejs(['bootstrap'], function(bootstrap) {
+//
+// });
+// requirejs(['highcharts'], function() {
+//
+// });
 require(['app'], function(app) {
 
 });
