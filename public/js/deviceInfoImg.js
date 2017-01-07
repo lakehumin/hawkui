@@ -10,7 +10,7 @@ define(['angular'], function() {
             vm.id = $stateParams.id;
 
             var date = new Date(new Date().getTime() - 29 * 24 * 60 * 60 * 1000); //获取近来30天历史数据
-            alert($stateParams.id)
+
             getHistoryImg();
 
             function getHistoryImg() {
@@ -19,9 +19,15 @@ define(['angular'], function() {
                 $http.get(url).success(function(data){
                     if(data.success) {
                         vm.imgHistory = data.data;
+                        changeDate();
                     }
                 });
             }
 
+            function changeDate() {
+                for(var i = 0; i < vm.imgHistory.length; i ++) {
+                    vm.imgHistory[i].datetime = new Date(vm.imgHistory[i].date).toLocaleDateString();
+                }
+            }
         }]);
 });

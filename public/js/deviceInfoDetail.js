@@ -6,6 +6,7 @@ define(['angular','jquery','highcharts'], function() {
         .controller('DeviceInfoDetailCtrl', ['$scope','$http','$stateParams', function ($scope,$http,$stateParams) {
             var vm = {};
             $scope.vm = vm;
+            vm.id = $stateParams.id;
             vm.deviceInfo={};
             vm.deviceHistory=[];
             vm.deviceBatteryHistory=[];
