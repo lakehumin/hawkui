@@ -37,6 +37,9 @@ define(['angular'], function() {
             }
 
             vm.endEvent = function () {
+                if(vm.event.user != $scope.user.username) {
+                    alert("您不是该事件处理人，没有权限处理！");
+                }
                 var url = 'http://'+$scope.ip+':'+$scope.port+'/alarm/update/end?id='+$stateParams.id
                     +'&state=2&enddate='+new Date().getTime()+'&record='+vm.end.record;
                 $http.get(url).success(function(data){
