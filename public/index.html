@@ -38,7 +38,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <!--<li><a href="">设置</a></li>-->
+                <li><a href="#/userManage/userOperation/{{user.username}}">设置</a></li>
                 <li><a href="">当前用户：{{user.username}}</a></li>
                 <li><a href="">权限：{{user.role}}</a></li>
                 <li><a href="" ng-click="logout()">退出</a></li>
@@ -67,6 +67,17 @@
                 <li ui-sref-active="active">
                     <a ui-sref="deviceInfo">
                         <span class="glyphicon glyphicon-th-list"></span> 设备信息
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="exception">
+                        <span class="glyphicon glyphicon-bell"></span> 异常处理
+                        <span class="badge badge-red">{{message}}</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="command">
+                        <span class="glyphicon glyphicon-send"></span> 设备操作
                     </a>
                 </li>
                 <li ui-sref-active="active">

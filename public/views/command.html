@@ -8,7 +8,6 @@
             <thead>
             <tr>
                 <th>编号</th>
-                <th>电话号码</th>
                 <th>位置</th>
                 <th>在线状态</th>
                 <th>操作</th>
@@ -17,19 +16,19 @@
             <tbody>
             <tr ng-repeat="device in vm.deviceList">
                 <td>
-                    <a ui-sref="deviceInfo.detail({id:'{{device.terminal_id}}'})">{{device.terminal_id}}</a>
+                    {{device.terminal_id}}
                 </td>
-                <td>{{device.tel_num}}</td>
                 <td>{{device.location}}</td>
                 <td>{{device.islinked | onlineStateFilter}}</td>
                 <td>
-                    <a ui-sref="deviceInfo.modify({id:'{{device.terminal_id}}'})">编辑</a>
+                    <button type="button" class="btn btn-info">获取当前状态</button>
+                    <button type="button" class="btn btn-warning">设置电话号码</button>
+                    <button type="button" class="btn btn-success">检查连接</button>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
-    <button ui-sref="deviceInfo.add" type="button" class="btn btn-primary btn-size">添加设备</button>
 </div>
 </body>
 </html>

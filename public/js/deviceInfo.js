@@ -17,7 +17,7 @@ define(['angular'], function() {
             });
 
         }])
-        .filter('stateFilter', function(){
+        .filter('onlineStateFilter', function(){
             var filter = function(isOnLine){
                 if(isOnLine == 1) {
                     return '在线';

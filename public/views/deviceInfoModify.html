@@ -7,20 +7,16 @@
         <div class="col-md-4 col-md-offset-1">
             <div class="col-md-7 col-md-offset-1">
                 <form class="form-horizontal form-size" ng-submit="vm.updateDevice(vm.device)">
-                    <div class="control-group label-interval">
-                        <div class="controls">
-                            <label class="control-label" for="deviceTel">电话号码：</label>
-                            <input ng-model="vm.device.tel" class="pull-right" id="deviceTel" type="text"/>
-                        </div>
+                    <div class="input-group label-interval">
+                        <span class="input-group-addon label-size">电话号码：</span>
+                        <input ng-model="vm.device.tel" class="form-control" type="text"/>
                     </div>
-                    <div class="control-group label-interval">
-                        <div class="controls">
-                            <label class="control-label" for="deviceLocation">地理位置：</label>
-                            <input ng-model="vm.device.location" class="pull-right" id="deviceLocation" type="text" />
-                        </div>
+                    <div class="input-group label-interval">
+                        <span class="input-group-addon label-size">地理位置：</span>
+                        <input ng-model="vm.device.location" class="form-control" type="text" />
                     </div>
                     <div class="label-interval">
-                        <button type="submit" class="btn btn-primary btn-size">修改</button>
+                        <button type="submit" class="btn btn-info btn-size">修改</button>
                         <button ng-click="vm.deleteDevice()" type="button" class="btn btn-danger pull-right btn-size">删除设备</button>
                     </div>
                 </form>

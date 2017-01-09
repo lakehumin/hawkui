@@ -7,11 +7,9 @@ define(['angular'], function() {
             function ($scope,$http,$stateParams,$state) {
                 var vm = {};
                 $scope.vm = vm;
-                vm.device={
-                    id:$stateParams.device.terminal_id,
-                    tel:$stateParams.device.tel_num,
-                    location:$stateParams.device.location
-                };
+                vm.device={};
+                getDevice();
+
                 vm.updateDevice = function (device) {
                     if(!device.tel) {
                         alert('请输入设备使用电话号码');
@@ -40,6 +38,17 @@ define(['angular'], function() {
                         if(data.success) {
                             alert('设备 '+vm.device.id+' 删除成功');
                             $state.go('deviceInfo',{},{ reload: true });
+                        }
+                    });
+                }
+
+                function getDevice() {
+                    var url = 'http://'+$scope.ip+':'+$scope.port+'/device/search/detail?id=' + $stateParams.id;
+                    $http.get(url).success(function(data){
+                        if(data.success) {
+                            vm.device.id = data.data.id,
+                            vm.device.tel = data.data.tel,
+                            vm.device.location = data.data.location
                         }
                     });
                 }

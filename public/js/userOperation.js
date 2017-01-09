@@ -7,8 +7,8 @@ define(['angular'], function() {
             function ($scope,$http,$stateParams,$state) {
             var vm = {};
             $scope.vm = vm;
-            vm.user={};
-            vm.user.username = $stateParams.username;
+            vm.user = {};
+
             vm.updateUser = function (user) {
                 if(!user.password) {
                     alert('请输入密码');
@@ -26,7 +26,7 @@ define(['angular'], function() {
             }
             function updateUser(user) {
                 var url = 'http://'+$scope.ip+':'+$scope.port+'/user/update?username=' + user.username +
-                    '&password=' + user.password;
+                    '&password=' + user.password + '&tel=' + user.tel + '&realname=' + user.realname;
                 $http.get(url).success(function(data){
                     if(data.success) {
                         alert('密码修改成功');
@@ -44,5 +44,15 @@ define(['angular'], function() {
                     }
                 });
             }
+
+            function getUser() {
+                var url = 'http://'+$scope.ip+':'+$scope.port+'/user/search?username=' + $stateParams.username;
+                $http.get(url).success(function(data){
+                    vm.user = data;
+                    vm.user.password = '';
+                });
+            }
+
+            getUser();
         }]);
 });

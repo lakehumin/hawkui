@@ -23,7 +23,11 @@ requirejs.config({
         'deviceInfoAdd':'deviceInfoAdd',
         'deviceInfoModify':'deviceInfoModify',
         'deviceInfoImg':'deviceInfoImg',
-        'monitor':'monitor'
+        'monitor':'monitor',
+        'exception':'exception',
+        'exceptionList':'exceptionList',
+        'exceptionState':'exceptionState',
+        'command':'command',
     },
     shim: {
         'angular' : {
@@ -64,8 +68,14 @@ requirejs.config({
         'deviceInfo': {
             deps: ['deviceInfoDetail','deviceInfoAdd','deviceInfoModify','deviceInfoImg']
         },
+        'exception': {
+            deps: ['exceptionList']
+        },
+        'exceptionList': {
+            deps: ['exceptionState']
+        },
         'app': {
-            deps: ['userManage','deviceInfo','overview','monitor']
+            deps: ['userManage','deviceInfo','overview','monitor','exception','command']
         }
     }
 });

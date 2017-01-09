@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 class="page-header">异常处理</h1>
+<ul class="nav nav-tabs" role="tablist" style="margin-top: 15px">
+    <li role="presentation"  ui-sref-active="active">
+        <a ui-sref="exception.list({code:'1'})" class="nav-btn">
+            待处理异常
+        </a>
+    </li>
+    <li role="presentation"  ui-sref-active="active">
+        <a ui-sref="exception.list({code:'2'})" class="nav-btn">处理中异常</a>
+    </li>
+    <li role="presentation"  ui-sref-active="active">
+        <a ui-sref="exception.list({code:'3'})" class="nav-btn">已处理异常</a>
+    </li>
+    <li role="presentation"  ui-sref-active="active">
+        <a ui-sref="exception.list({code:'0'})" class="nav-btn">历史记录</a>
+    </li>
+</ul>
+<div ui-view style="margin-top: 30px"></div>
+</body>
+</html>

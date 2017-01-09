@@ -39,7 +39,7 @@ define(['angular','jquery','highcharts'], function() {
                         enabled:false // 禁用版权信息
                     },
                     title: {
-                        text: '电池电量随时间变化曲线',
+                        text: '电池剩余电量随时间变化曲线',
                         style:{
                             fontSize:'20px',
                             fontWeight:"bold",
@@ -94,7 +94,7 @@ define(['angular','jquery','highcharts'], function() {
 
                     series: [{
                         type: 'area',
-                        name: '电压值',
+                        name: '剩余电量',
                         pointInterval: 24 * 3600 * 1000,
                         pointStart: Date.UTC(date.getYear(), date.getMonth(), date.getDate()),
                         data: []

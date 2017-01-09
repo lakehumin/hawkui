@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div ui-view>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>设备编号</th>
+            <th>故障事由</th>
+            <th>发生时间</th>
+            <th>处理人</th>
+            <th>当前状态</th>
+            <th>开始处理</th>
+            <th>处理结束</th>
+            <th>处理记录</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="event in vm.list">
+            <td>{{event.terminal_id}}</td>
+            <td>{{event.event}}</td>
+            <td>{{event.eventdate | dateFilter}}</td>
+            <td>{{event.user}}</td>
+            <td>{{event.state | stateFilter}}</td>
+            <td>{{event.begindate | dateFilter}}</td>
+            <td>{{event.enddate | dateFilter}}</td>
+            <td>{{event.record | recordFilter}}</td>
+            <td>
+                <a ui-sref="exception.list.state({id:'{{event.id}}'})">{{event.state | operationFilter}}</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

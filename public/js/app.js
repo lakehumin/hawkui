@@ -3,7 +3,7 @@
  */
 define(['jquery','angular','router','cookies','bootstrap'], function() {
     angular.module('home', ['ui.router','ngCookies','home.userManage','home.deviceInfo','home.overview',
-        'home.monitor'])
+        'home.monitor','home.exception','home.command'])
         .config(['$stateProvider',function ($stateProvider) {
             $stateProvider.state('userManage', {
                 templateUrl: '../views/userManage.html',
@@ -38,7 +38,6 @@ define(['jquery','angular','router','cookies','bootstrap'], function() {
             .state('deviceInfo.modify', {
                 templateUrl: '../views/deviceInfoModify.html',
                 url: "/modify/{id}",
-                params:{"device":null},
                 controller: "DeviceInfoModifyCtrl"
             })
             .state('deviceInfo.img', {
@@ -55,10 +54,30 @@ define(['jquery','angular','router','cookies','bootstrap'], function() {
                 templateUrl: '../views/offlineMap.html',
                 url: "/overview",
                 controller: "OverViewCtrl"
+            })
+            .state('exception', {
+                templateUrl: '../views/exception.html',
+                url: "/exception",
+                controller: "ExceptionCtrl"
+            })
+            .state('exception.list', {
+                templateUrl: '../views/exceptionList.html',
+                url: "/exceptionList/{code}",
+                controller: "ExceptionListCtrl"
+            })
+            .state('exception.list.state', {
+                templateUrl: '../views/exceptionState.html',
+                url: "/exceptionState/{id}",
+                controller: "ExceptionStateCtrl"
+            })
+            .state('command', {
+                templateUrl: '../views/command.html',
+                url: "/command",
+                controller: "CommandCtrl"
             });
         }])
-        .controller('HomeCtrl', ['$rootScope','$scope','$http','$window','$cookieStore','$state',
-            function ($rootScope,$scope,$http,$window,$cookieStore,$state) {
+        .controller('HomeCtrl', ['$rootScope','$scope','$http','$window','$cookieStore','$state','$interval',
+            function ($rootScope,$scope,$http,$window,$cookieStore,$state,$interval) {
             //java后台ip
             $scope.ip = '114.212.118.115';
             $scope.port = '8088';
@@ -160,7 +179,24 @@ define(['jquery','angular','router','cookies','bootstrap'], function() {
                         alert('权限不够，请使用root账户登录');
                     }
                 }
+                if(toState.name == 'exception') {
+                    event.preventDefault();
+                    $state.go('exception.list',{code:'1'});
+                }
             });
+
+            $scope.message;
+
+            $scope.updateMessage = function() {
+                var detailurl = 'http://'+$scope.ip+':'+$scope.port+'/alarm/search?searchcode=1';
+                $http.get(detailurl).success(function(data){
+                    if(data.success) {
+                        $scope.message = data.data.length == 0 ? '': data.data.length;
+                    }
+                });
+            }
+
+            $interval($scope.updateMessage, 3000); //定时刷新
         }]);
     angular.bootstrap(document,['home']);
 });

@@ -7,8 +7,9 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>id</th>
                 <th>用户名</th>
+                <th>真实姓名</th>
+                <th>联系方式</th>
                 <th>密码</th>
                 <th>类型</th>
                 <th>操作</th>
@@ -16,15 +17,16 @@
             </thead>
             <tbody>
             <tr ng-repeat="user in vm.userList">
-                <td>{{user.id}}</td>
                 <td>{{user.username}}</td>
+                <td>{{user.realname}}</td>
+                <td>{{user.tel}}</td>
                 <td>{{user.password}}</td>
                 <td>{{user.type}}</td>
                 <td><a ui-sref="userManage.userOperation({username:'{{user.username}}'})">编辑</a></td>
             </tr>
             </tbody>
         </table>
-        <button ui-sref="userManage.addUser" type="button" class="btn btn-info btn-size">添加用户</button>
+        <button ui-sref="userManage.addUser" type="button" class="btn btn-primary btn-size">添加用户</button>
     </div>
 </div>
 </body>

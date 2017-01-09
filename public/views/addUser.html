@@ -7,23 +7,25 @@
         <div class="col-md-4 col-md-offset-1">
             <div class="col-md-7 col-md-offset-1">
                 <form class="form-horizontal form-size" ng-submit="vm.addUser(vm.user)">
-                    <div class="control-group label-interval">
-                        <div class="controls">
-                            <label class="control-label" for="username">新用户：</label>
-                            <input ng-model="vm.user.username" class="pull-right" id="username" type="text" />
-                        </div>
+                    <div class="input-group label-interval">
+                        <span class="input-group-addon label-size">用户名：</span>
+                        <input ng-model="vm.user.username" class="form-control" type="text" />
                     </div>
-                    <div class="control-group label-interval">
-                        <div class="controls">
-                            <label class="control-label" for="newPassword">新密码：</label>
-                            <input ng-model="vm.user.password" class="pull-right" id="newPassword" type="password" />
-                        </div>
+                    <div class="input-group label-interval">
+                        <span class="input-group-addon label-size">姓名：</span>
+                        <input ng-model="vm.user.realname" class="form-control" type="text" />
                     </div>
-                    <div class="control-group label-interval">
-                        <div class="controls">
-                            <label class="control-label" for="confirmPassword">确认密码：</label>
-                            <input ng-model="vm.confirmPassword" class="pull-right" id="confirmPassword" type="password" />
-                        </div>
+                    <div class="input-group label-interval">
+                        <span class="input-group-addon label-size">联系方式：</span>
+                        <input ng-model="vm.user.tel" class="form-control" type="text" />
+                    </div>
+                    <div class="input-group label-interval">
+                        <span class="input-group-addon label-size">新密码：</span>
+                        <input ng-model="vm.user.password" class="form-control" type="password" />
+                    </div>
+                    <div class="input-group label-interval">
+                        <span class="input-group-addon label-size">确认密码：</span>
+                        <input ng-model="vm.confirmPassword" class="form-control" type="password" />
                     </div>
                     <div class="label-interval">
                         <button type="submit" class="btn btn-primary pull-right btn-size">添加</button>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div align="center" class="common-interval">
+    <h2>设备{{vm.event.terminal_id}}的{{vm.event.event}}事件处理状态</h2>
+</div>
+<div align="center" class="common-interval-min">
+    <h3>{{vm.event.state | stateDisplayFilter}}</h3>
+</div>
+<div class="col-md-6 col-md-offset-3">
+    <div ng-show="vm.event.state == 2" class="progress">
+        <div class="progress-bar progress-bar-success" style="width: 100%"></div>
+    </div>
+    <div ng-show="vm.event.state == 1" class="progress">
+        <div class="progress-bar progress-bar-warning progress-bar-striped active" style="width: 50%"></div>
+    </div>
+    <div ng-show="vm.event.state == 0" class="progress">
+        <div class="progress-bar progress-bar-danger" style="width: 3%"></div>
+    </div>
+</div>
+<div ng-show="vm.event.state == 0" class="col-md-6 col-md-offset-3">
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    故障原因
+                </div>
+                <div class="panel-body">
+                    {{vm.event.event}}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    故障发生时间
+                </div>
+                <div class="panel-body">
+                    {{vm.event.eventdate | dateFilter}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <form class="form-horizontal form-size" ng-submit="vm.beginEvent()">
+            <div align="center">
+                <div class="input-group label-interval">
+                    <span class="input-group-addon label-size">用户名：</span>
+                    <input ng-model="vm.begin.username" class="form-control" disabled type="text" />
+                </div>
+            </div>
+            <div align="center" class="label-interval">
+                <button type="submit" class="btn btn-info btn-size">提交处理</button>
+                <button onclick=" history.back();" type="button" class="btn btn-warning btn-size" style="margin-left: 40px">返回</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div ng-show="vm.event.state == 1" class="col-md-6 col-md-offset-3">
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    故障原因
+                </div>
+                <div class="panel-body">
+                    {{vm.event.event}}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    故障发生时间
+                </div>
+                <div class="panel-body">
+                    {{vm.event.eventdate | dateFilter}}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    处理人
+                </div>
+                <div class="panel-body">
+                    {{vm.event.user}}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    开始处理时间
+                </div>
+                <div class="panel-body">
+                    {{vm.event.begindate | dateFilter}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <form class="form-horizontal form-size" ng-submit="vm.endEvent()">
+            <div align="center">
+                <div class="input-group label-interval">
+                    <span class="input-group-addon label-size">处理记录：</span>
+                    <textarea ng-model="vm.end.record" class="form-control" type="text"
+                    style="width: 350px;height: 200px;"/>
+                </div>
+            </div>
+            <div align="center" class="label-interval">
+                <button type="submit" class="btn btn-info btn-size">完成处理</button>
+                <button onclick=" history.back();" type="button" class="btn btn-warning btn-size" style="margin-left: 40px">返回</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div ng-show="vm.event.state == 2" class="col-md-6 col-md-offset-3">
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    故障原因
+                </div>
+                <div class="panel-body">
+                    {{vm.event.event}}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    故障发生时间
+                </div>
+                <div class="panel-body">
+                    {{vm.event.eventdate | dateFilter}}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    处理人
+                </div>
+                <div class="panel-body">
+                    {{vm.event.user}}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    开始处理时间
+                </div>
+                <div class="panel-body">
+                    {{vm.event.begindate | dateFilter}}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    处理结束时间
+                </div>
+                <div class="panel-body">
+                    {{vm.event.enddate | dateFilter}}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    处理记录
+                </div>
+                <div class="panel-body">
+                    {{vm.event.record}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div align="center" class="label-interval">
+            <button onclick=" history.back();" type="button" class="btn btn-warning btn-size">返回</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

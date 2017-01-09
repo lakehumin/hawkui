@@ -1,5 +1,14 @@
+.common-interval  {
+    margin: 40px;
+}
+.common-interval-min  {
+    margin-bottom: 20px;
+}
 .label-interval  {
     margin-top: 20px;
+}
+.label-size  {
+    width: 100px;
 }
 .btn-size  {
     width: 90px;
@@ -29,4 +38,10 @@
     padding: 20px;
     border-collapse: separate;
     border-spacing: 5px 10px
+}
+.badge-red {
+    margin-left: 15px;
+    background-color: rgb(255, 41, 41);
+}
+.nav-btn {
 }

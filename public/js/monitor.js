@@ -74,7 +74,7 @@ define(['angular'], function() {
                 });
             }
             getDeviceList();
-            var timer = $interval(getDeviceList, 2000); //定时刷新
+            var timer = $interval(getDeviceList, 3000); //定时刷新
             $scope.$on(
                 "$destroy",
                 function() {
