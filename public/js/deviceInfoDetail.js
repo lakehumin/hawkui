@@ -13,7 +13,7 @@ define(['angular','jquery','highcharts'], function() {
             vm.deviceVoltageHistory=[];
             vm.imgsrc = 'monitorImg/common.jpg';
 
-            var date = new Date(new Date().getTime() - 29 * 24 * 60 * 60 * 1000); //获取近来30天历史数据
+            var date = new Date(new Date().getTime() - 59 * 24 * 60 * 60 * 1000); //获取近来30天历史数据
 
             getDetail();
             drawHistory();
@@ -188,7 +188,7 @@ define(['angular','jquery','highcharts'], function() {
             function updateHistory() {
                 var i = 0, j = 0;
                 var tempdate = date;
-                for(; i < 30; i ++) {
+                for(; i < 60; i ++) {
                     if(vm.deviceHistory[j] && tempdate.toDateString() === new Date(vm.deviceHistory[j].date).toDateString()) {
                         vm.deviceBatteryHistory[i] = parseFloat(vm.deviceHistory[j].battery);
                         vm.deviceVoltageHistory[i] = parseFloat(vm.deviceHistory[j].voltage);
