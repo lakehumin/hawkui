@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e4df6c3-4e82-43f2-ad60-e7bd3fecc800" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/deviceInfoDetail.html" afterPath="$PROJECT_DIR$/public/views/deviceInfoDetail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/exceptionState.js" afterPath="$PROJECT_DIR$/public/js/exceptionState.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/command.html" afterPath="$PROJECT_DIR$/public/views/command.html" />
     </list>
     <ignored path="hawkui.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -58,8 +59,8 @@
       <file leaf-file-name="command.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/views/command.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="25" column="70" selection-start-line="25" selection-start-column="70" selection-end-line="25" selection-end-column="70" />
+            <state relative-caret-position="257">
+              <caret line="24" column="64" selection-start-line="24" selection-start-column="53" selection-end-line="24" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -82,17 +83,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="exceptionState.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="exceptionState.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/exceptionState.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="209">
-              <caret line="41" column="17" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
+              <caret line="41" column="28" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="deviceInfoDetail.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="deviceInfoDetail.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/views/deviceInfoDetail.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="190">
@@ -117,16 +118,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="380">
               <caret line="20" column="61" selection-start-line="20" selection-start-column="61" selection-end-line="20" selection-end-column="61" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="exceptionList.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/views/exceptionList.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="27" column="45" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -195,11 +186,11 @@
         <option value="$PROJECT_DIR$/public/js/config.js" />
         <option value="$PROJECT_DIR$/public/js/app.js" />
         <option value="$PROJECT_DIR$/public/js/command.js" />
-        <option value="$PROJECT_DIR$/public/views/command.html" />
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/public/views/monitor.html" />
-        <option value="$PROJECT_DIR$/public/js/exceptionState.js" />
         <option value="$PROJECT_DIR$/public/views/deviceInfoDetail.html" />
+        <option value="$PROJECT_DIR$/public/js/exceptionState.js" />
+        <option value="$PROJECT_DIR$/public/views/command.html" />
       </list>
     </option>
   </component>
@@ -432,12 +423,12 @@
       <workItem from="1482142455926" duration="7759000" />
       <workItem from="1482734340914" duration="6378000" />
       <workItem from="1483003289974" duration="76383000" />
-      <workItem from="1483874920962" duration="28957000" />
+      <workItem from="1483874920962" duration="29762000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="307451000" />
+    <option name="totallyTimeSpent" value="308256000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1979" y="10" width="1166" height="676" extended-state="0" />
@@ -643,14 +634,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/bootstrap.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="4857" column="7" selection-start-line="4857" selection-start-column="1" selection-end-line="4857" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/monitor.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
@@ -816,14 +799,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/command.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="25" column="70" selection-start-line="25" selection-start-column="70" selection-end-line="25" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
@@ -863,18 +838,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/exceptionState.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="41" column="17" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/views/deviceInfoDetail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="38" column="51" selection-start-line="38" selection-start-column="51" selection-end-line="38" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="3286" column="12" selection-start-line="3286" selection-start-column="1" selection-end-line="3286" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/command.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="24" column="64" selection-start-line="24" selection-start-column="53" selection-end-line="24" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/exceptionState.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="41" column="28" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
           <folding />
         </state>
       </provider>
