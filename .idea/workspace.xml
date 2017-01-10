@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e4df6c3-4e82-43f2-ad60-e7bd3fecc800" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/deviceInfoDetail.js" afterPath="$PROJECT_DIR$/public/js/deviceInfoDetail.js" />
     </list>
     <ignored path="hawkui.iws" />
@@ -38,8 +39,18 @@
       <file leaf-file-name="deviceInfoDetail.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/deviceInfoDetail.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="190" column="27" selection-start-line="190" selection-start-column="27" selection-end-line="190" selection-end-column="27" />
+            <state relative-caret-position="361">
+              <caret line="35" column="59" selection-start-line="35" selection-start-column="59" selection-end-line="35" selection-end-column="59" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="deviceInfoDetail.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/views/deviceInfoDetail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="42" column="43" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -368,15 +379,15 @@
       <workItem from="1482142455926" duration="7759000" />
       <workItem from="1482734340914" duration="6378000" />
       <workItem from="1483003289974" duration="76383000" />
-      <workItem from="1483874920962" duration="33695000" />
+      <workItem from="1483874920962" duration="34642000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="312189000" />
+    <option name="totallyTimeSpent" value="313136000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1979" y="10" width="1166" height="676" extended-state="0" />
+    <frame x="1979" y="10" width="1166" height="676" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26152483" sideWeight="0.49261993" order="0" side_tool="false" content_ui="combo" />
@@ -617,14 +628,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/deviceInfoDetail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="38" column="51" selection-start-line="38" selection-start-column="51" selection-end-line="38" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="86">
@@ -819,10 +822,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/deviceInfoDetail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="42" column="43" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/deviceInfoDetail.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="190" column="27" selection-start-line="190" selection-start-column="27" selection-end-line="190" selection-end-column="27" />
+        <state relative-caret-position="361">
+          <caret line="35" column="59" selection-start-line="35" selection-start-column="59" selection-end-line="35" selection-end-column="59" />
           <folding />
         </state>
       </provider>

@@ -25,6 +25,18 @@ define(['angular','jquery','highcharts'], function() {
                 $http.get(url).success(function(data){
                     if(data.success) {
                         vm.deviceInfo = data.data;
+                    } else {
+                        url = 'http://'+$scope.ip+':'+$scope.port+'/device/search/devdetail?id='+$stateParams.id;
+                        $http.get(url).success(function(data){
+                            if(data.success) {
+                                vm.deviceInfo = data.data;
+                                vm.deviceInfo.id = vm.deviceInfo.terminal_id;
+                                vm.deviceInfo.tel = vm.deviceInfo.tel_num;
+                                vm.deviceInfo.battery = '暂无';
+                                vm.deviceInfo.voltage = '暂无';
+                                vm.deviceInfo.workstate = '暂无今日信息';
+                            }
+                        });
                     }
                 });
             }
