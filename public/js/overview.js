@@ -47,7 +47,7 @@ define(['angular','bmap'], function() {
             map.enableScrollWheelZoom();                  // 启用滚轮放大缩小。
             map.enableKeyboard();                         // 启用键盘操作。
             map.addControl(new BMap.ScaleControl({anchor: BMAP_ANCHOR_BOTTOM_LEFT}));
-            var marker = new BMap.Marker(point,{icon:myIcon});
+            var marker = new BMap.Marker(point); //,{icon:myIcon}
             marker.addEventListener("click", function(){
                 // $state.go('deviceInfo.detail',{id:'XXX'},{});
             });
@@ -61,15 +61,15 @@ define(['angular','bmap'], function() {
             }
 
             vm.deviceInfo={
-                id:'XXX',
-                location:'XXX',
+                id:'001',
+                location:'来宾',
                 tel:'15264684556',
                 state:true,
                 battery:'23%',
                 voltage:'7.6V',
                 workstate:'normal'
             };
-            var content = '<table style="font-size: 15px">'+
+            var content = '<table style="font-size: 15px;border-collapse: separate;border-spacing: 10px 5px">'+
                 '<tr><td>id</td>'+
                 '<td>'+vm.deviceInfo.id+'</td></tr>'+
                 '<tr><td>电话号码&nbsp&nbsp&nbsp&nbsp</td>'+

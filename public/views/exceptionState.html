@@ -7,38 +7,36 @@
 <div align="center" class="common-interval-min">
     <h3>{{vm.event.state | stateDisplayFilter}}</h3>
 </div>
-<div class="col-md-6 col-md-offset-3">
-    <div ng-show="vm.event.state == 2" class="progress">
+<div class="col-md-8 col-md-offset-2">
+    <div ng-show="vm.event.state == 2" class="progress" style="height: 41px">
         <div class="progress-bar progress-bar-success" style="width: 100%"></div>
     </div>
-    <div ng-show="vm.event.state == 1" class="progress">
+    <div ng-show="vm.event.state == 1" class="progress" style="height: 41px">
         <div class="progress-bar progress-bar-warning progress-bar-striped active" style="width: 50%"></div>
     </div>
-    <div ng-show="vm.event.state == 0" class="progress">
+    <div ng-show="vm.event.state == 0" class="progress" style="height: 41px">
         <div class="progress-bar progress-bar-danger" style="width: 3%"></div>
     </div>
 </div>
-<div ng-show="vm.event.state == 0" class="col-md-6 col-md-offset-3">
-    <div class="col-md-12">
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    故障原因
-                </div>
-                <div class="panel-body">
-                    {{vm.event.event}}
-                </div>
+<div ng-show="vm.event.state == 0" class="col-md-8 col-md-offset-2">
+    <div class="col-md-6 padding-left0">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                故障原因
+            </div>
+            <div class="panel-body">
+                {{vm.event.event}}
             </div>
         </div>
+    </div>
 
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    故障发生时间
-                </div>
-                <div class="panel-body">
-                    {{vm.event.eventdate | dateFilter}}
-                </div>
+    <div class="col-md-6 padding-right0">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                故障发生时间
+            </div>
+            <div class="panel-body">
+                {{vm.event.eventdate | dateFilter}}
             </div>
         </div>
     </div>
@@ -59,60 +57,58 @@
     </div>
 </div>
 
-<div ng-show="vm.event.state == 1" class="col-md-6 col-md-offset-3">
-    <div class="col-md-12">
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    故障原因
-                </div>
-                <div class="panel-body">
-                    {{vm.event.event}}
-                </div>
+<div ng-show="vm.event.state == 1" class="col-md-8 col-md-offset-2">
+    <div class="col-md-6 padding-left0">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                故障原因
             </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    故障发生时间
-                </div>
-                <div class="panel-body">
-                    {{vm.event.eventdate | dateFilter}}
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    处理人
-                </div>
-                <div class="panel-body">
-                    {{vm.event.user}}
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    开始处理时间
-                </div>
-                <div class="panel-body">
-                    {{vm.event.begindate | dateFilter}}
-                </div>
+            <div class="panel-body">
+                {{vm.event.event}}
             </div>
         </div>
     </div>
 
-    <div class="col-md-12">
+    <div class="col-md-6 padding-right0">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                故障发生时间
+            </div>
+            <div class="panel-body">
+                {{vm.event.eventdate | dateFilter}}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 padding-left0">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                处理人
+            </div>
+            <div class="panel-body">
+                {{vm.event.user}}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 padding-right0">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                开始处理时间
+            </div>
+            <div class="panel-body">
+                {{vm.event.begindate | dateFilter}}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12 padding-left0">
         <form class="form-horizontal form-size" ng-submit="vm.endEvent()">
             <div align="center">
                 <div class="input-group label-interval">
                     <span class="input-group-addon label-size">处理记录：</span>
                     <textarea ng-model="vm.end.record" class="form-control" type="text"
-                    style="width: 350px;height: 200px;"/>
+                    style="width: 888.33px;height: 200px;"/>
                 </div>
             </div>
             <div align="center" class="label-interval">
@@ -123,71 +119,69 @@
     </div>
 </div>
 
-<div ng-show="vm.event.state == 2" class="col-md-6 col-md-offset-3">
-    <div class="col-md-12">
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    故障原因
-                </div>
-                <div class="panel-body">
-                    {{vm.event.event}}
-                </div>
+<div ng-show="vm.event.state == 2" class="col-md-8 col-md-offset-2">
+    <div class="col-md-6 padding-left0">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                故障原因
+            </div>
+            <div class="panel-body">
+                {{vm.event.event}}
             </div>
         </div>
+    </div>
 
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    故障发生时间
-                </div>
-                <div class="panel-body">
-                    {{vm.event.eventdate | dateFilter}}
-                </div>
+    <div class="col-md-6 padding-right0">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                故障发生时间
+            </div>
+            <div class="panel-body">
+                {{vm.event.eventdate | dateFilter}}
             </div>
         </div>
+    </div>
 
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    处理人
-                </div>
-                <div class="panel-body">
-                    {{vm.event.user}}
-                </div>
+    <div class="col-md-6 padding-left0">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                处理人
+            </div>
+            <div class="panel-body">
+                {{vm.event.user}}
             </div>
         </div>
+    </div>
 
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    开始处理时间
-                </div>
-                <div class="panel-body">
-                    {{vm.event.begindate | dateFilter}}
-                </div>
+    <div class="col-md-6 padding-right0">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                开始处理时间
+            </div>
+            <div class="panel-body">
+                {{vm.event.begindate | dateFilter}}
             </div>
         </div>
+    </div>
 
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    处理结束时间
-                </div>
-                <div class="panel-body">
-                    {{vm.event.enddate | dateFilter}}
-                </div>
+    <div class="col-md-6 padding-left0">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                处理结束时间
+            </div>
+            <div class="panel-body">
+                {{vm.event.enddate | dateFilter}}
             </div>
         </div>
+    </div>
 
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    处理记录
-                </div>
-                <div class="panel-body">
-                    {{vm.event.record}}
-                </div>
+    <div class="col-md-6 padding-right0">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                处理记录
+            </div>
+            <div class="panel-body">
+                {{vm.event.record}}
             </div>
         </div>
     </div>

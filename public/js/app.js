@@ -152,6 +152,7 @@ define(['jquery','angular','router','cookies','bootstrap'], function() {
                 $('#myModal').modal('show');
             }
 
+            //search导航
             $scope.searchText = '';
             $scope.search = function () {
                 switch ($scope.searchText) {
@@ -166,6 +167,15 @@ define(['jquery','angular','router','cookies','bootstrap'], function() {
                         break;
                     case '地图':
                         $state.go('overview');
+                        break;
+                    case '异常':
+                        $state.go('exception');
+                        break;
+                    case '健哥':
+                        alert('他是SB，不用理他');     //一个程序员的不满，望学弟学妹们有心理准备
+                        break;
+                    default :
+                        alert('错误名称');
                         break;
                 }
 
@@ -185,8 +195,8 @@ define(['jquery','angular','router','cookies','bootstrap'], function() {
                 }
             });
 
+            //首页异常数量徽章显示
             $scope.message;
-
             $scope.updateMessage = function() {
                 var detailurl = 'http://'+$scope.ip+':'+$scope.port+'/alarm/search?searchcode=1';
                 $http.get(detailurl).success(function(data){
