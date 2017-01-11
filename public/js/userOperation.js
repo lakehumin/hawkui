@@ -26,7 +26,7 @@ define(['angular'], function() {
             }
             function updateUser(user) {
                 var url = 'http://'+$scope.ip+':'+$scope.port+'/user/update?username=' + user.username +
-                    '&password=' + user.password + '&tel=' + user.tel + '&realname=' + user.realname;
+                    '&password=' + user.password + '&tel=' + encodeURIComponent(user.tel) + '&realname=' + user.realname;
                 $http.get(url).success(function(data){
                     if(data.success) {
                         alert('密码修改成功');

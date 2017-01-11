@@ -26,7 +26,7 @@ define(['angular'], function() {
 
             function addDevice(device) {
                 var url = 'http://'+$scope.ip+':'+$scope.port+'/device/add?id=' + device.id +
-                    '&tel=' + device.tel + '&location=' + device.location;
+                    '&tel=' + encodeURIComponent(device.tel) + '&location=' + device.location;
                 $http.get(url).success(function(data){
                     if(data.success) {
                         alert('成功添加设备'+device.id);

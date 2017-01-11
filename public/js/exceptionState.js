@@ -42,7 +42,7 @@ define(['angular'], function() {
                     return ;
                 }
                 var url = 'http://'+$scope.ip+':'+$scope.port+'/alarm/update/end?id='+$stateParams.id
-                    +'&state=2&enddate='+new Date().getTime()+'&record='+vm.end.record;
+                    +'&state=2&enddate='+new Date().getTime()+'&record='+encodeURIComponent(vm.end.record);
                 $http.get(url).success(function(data){
                     if(data.success) {
                         alert("完成处理");

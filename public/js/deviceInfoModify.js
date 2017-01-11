@@ -23,7 +23,7 @@ define(['angular'], function() {
                 }
                 function updateDevice(device) {
                     var url = 'http://'+$scope.ip+':'+$scope.port+'/device/update?id=' + device.id +
-                        '&tel=' + device.tel + '&location=' + device.location;
+                        '&tel=' + encodeURIComponent(device.tel) + '&location=' + device.location;
                     $http.get(url).success(function(data){
                         if(data.success) {
                             alert('设备信息修改成功');
@@ -43,11 +43,11 @@ define(['angular'], function() {
                 }
 
                 function getDevice() {
-                    var url = 'http://'+$scope.ip+':'+$scope.port+'/device/search/detail?id=' + $stateParams.id;
+                    var url = 'http://'+$scope.ip+':'+$scope.port+'/device/search/devdetail?id=' + $stateParams.id;
                     $http.get(url).success(function(data){
                         if(data.success) {
-                            vm.device.id = data.data.id,
-                            vm.device.tel = data.data.tel,
+                            vm.device.id = data.data.terminal_id,
+                            vm.device.tel = data.data.tel_num,
                             vm.device.location = data.data.location
                         }
                     });

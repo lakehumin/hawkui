@@ -28,7 +28,7 @@ define(['angular'], function() {
             }
             function addUser(user) {
                 var url = 'http://'+$scope.ip+':'+$scope.port+'/user/add?username=' + user.username +
-                    '&password=' + user.password + '&tel=' + user.tel + '&realname=' + user.realname;
+                    '&password=' + user.password + '&tel=' + encodeURIComponent(user.tel) + '&realname=' + user.realname;
                 $http.get(url).success(function(data){
                     if(data.success) {
                         alert('成功添加用户'+user.username);
