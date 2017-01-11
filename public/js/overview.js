@@ -40,6 +40,10 @@ define(['angular','bmap'], function() {
             //离线地图
             var map = new BMap.Map("container",{minZoom:11,maxZoom:13,mapType: BMAP_SATELLITE_MAP});      //设置卫星图为底图
             var point = new BMap.Point(109.22,23.75214);    // 创建点坐标
+            var point2 = new BMap.Point(109.26,23.73214);
+            var point3 = new BMap.Point(109.16,23.71214);
+            var point4 = new BMap.Point(109.12,23.79914);
+            var point5 = new BMap.Point(109.32,23.79114);
             map.centerAndZoom(point,13);                     // 初始化地图,设置中心点坐标和地图级别。
 
             var myIcon = new BMap.Icon("img/tieta2.jpg", new BMap.Size(60, 90));
@@ -48,10 +52,18 @@ define(['angular','bmap'], function() {
             map.enableKeyboard();                         // 启用键盘操作。
             map.addControl(new BMap.ScaleControl({anchor: BMAP_ANCHOR_BOTTOM_LEFT}));
             var marker = new BMap.Marker(point); //,{icon:myIcon}
+            var marker2 = new BMap.Marker(point2);
+            var marker3 = new BMap.Marker(point3);
+            var marker4 = new BMap.Marker(point4);
+            var marker5 = new BMap.Marker(point5);
             marker.addEventListener("click", function(){
                 // $state.go('deviceInfo.detail',{id:'XXX'},{});
             });
             map.addOverlay(marker);
+            map.addOverlay(marker2);
+            map.addOverlay(marker3);
+            map.addOverlay(marker4);
+            map.addOverlay(marker5);
             var opts = {
                 width : 130,     // 信息窗口宽度
                 height: 250,     // 信息窗口高度
